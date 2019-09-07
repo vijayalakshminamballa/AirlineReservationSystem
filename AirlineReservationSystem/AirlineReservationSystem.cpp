@@ -116,18 +116,25 @@ Passenger& getPassengerInfo()
 void reserveASeat(Database& db)
 {
 	int chosenSeat;
+	int NumberOfSeats;
 
 	Flight& flight = chooseFlight(db);
-	std::vector<int> freeSeats = flight.getAvailableSeats();
-	for (int seat : freeSeats) {
+	cout << "Number of seats you want to reserve" << endl;
+	cin >> NumberOfSeats;
+
+	std::vector<int> availableSeats = flight.getAvailableSeats();
+	for (int seat : availableSeats) {
 		cout << seat << " ";
 	}
-	cout << endl << "Choose Your Seat " << endl;
-	cin >> chosenSeat;
+	for (int i =0; i<NumberOfSeats; i++)
+	{
 
-	Passenger& passenger = getPassengerInfo();
-	passenger.setSeatNumber(chosenSeat);
-	flight.reserveSeat(passenger);
+		cout << endl << "Choose Your Seat " << endl;
+		cin >> chosenSeat;
+        Passenger& passenger = getPassengerInfo();
+		passenger.setSeatNumber(chosenSeat);
+		flight.reserveSeat(passenger);
+	}
 }
 
 void displayPassengerInfo(Database& db) {
