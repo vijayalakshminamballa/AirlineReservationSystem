@@ -7,7 +7,6 @@
 using namespace AirlineReservationSystem;
 using namespace std;
 
-
 int displayMenu();
 void  reserveASeat(Database& db);
 void flightSchedule(Database& db);
@@ -16,22 +15,21 @@ void displayFlightDetails(Database& db);
 void userTicketInfomation(Database& db);
 Flight& chooseFlight(Database& db);
 
-
 int main()
 {
 	Database airlineDb;
 
-	Flight flight1("Seattle", "Dubai", 1,60);
-	Flight flight2("Newyork", "Hawaii", 2,70);
-	Flight flight3("LasVegas", "Seattle", 3,80);
-	Flight flight4("Portland", "Los Angeles", 4, 50);
+	Flight flight1("Seattle", "Dubai","14hr5min", "05:30 PM", "07:15 PM",1,60);
+	Flight flight2("Newyork", "Hawaii","3hr30min", "02:00 PM", "05:30 PM",2,70);
+	Flight flight3("LasVegas", "Seattle","2hr45min", "08:00 AM", "11:45 AM",3,80);
+	Flight flight4("Portland", "Los Angeles","2hr10min", "09:00 AM", "11:10 AM",4, 50);
 	 
 	airlineDb.addFlight(flight1);
 	airlineDb.addFlight(flight2);
 	airlineDb.addFlight(flight3);
 	airlineDb.addFlight(flight4);
 
-	while (true)
+	while (true) 
 	{
 		int selection = displayMenu();
 		switch (selection)
@@ -154,7 +152,7 @@ void displayPassengerInfo(Database& db) {
 		cout << "Seat Number: " << passenger.getSeatNumber() << endl;
 		cout << "Name: " << passenger.getFirstName() << " " << passenger.getLastName() << endl;
 		cout << "Gender:" << passenger.getGender() << endl;
-		cout << "Date Of Birth:" << passenger.getBirthday() << endl;
+		cout << "Date Of Birth: " << passenger.getBirthday() << endl;
 		cout << "Flight Number: " << flight.getFlightNumber() << endl;
 		cout << "Flight From: " << flight.getDepatureCity() << " To: " << flight.getArrivalCity() << endl;
 		cout << endl;
@@ -167,17 +165,17 @@ void userTicketInfomation(Database& db)
 	int userId;
 	cout << " Id number ";
 	cin >> userId;
-
+ 
 	vector<Passenger> passengers = flight.getPassengers();
 	bool userFound = false;
 	for (Passenger& passenger : passengers) {
-		if (userId == passenger.getIdNumber()) {
+		if (userId == passenger.getIdNumber()) { 
 			userFound = true;
 			cout << "Passenger Information:" << endl;
 			cout << "-------------------------" << endl;
 			cout << "Name: " << passenger.getFirstName() << " " << passenger.getLastName() << endl;
 			cout << "Gender:" << passenger.getGender() << endl;
-			cout << "Date Of Birth" << passenger.getBirthday() << endl;
+			cout << "Date Of Birth:" << passenger.getBirthday() << endl;
 			cout << "Flight Number: " << flight.getFlightNumber() << endl;
 			cout << "Flight From: " << flight.getDepatureCity() << " to " << flight.getArrivalCity() << endl;
 			cout << "Seat Number: " << passenger.getSeatNumber() << endl;

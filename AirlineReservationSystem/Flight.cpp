@@ -8,13 +8,13 @@
 using namespace std;
 namespace AirlineReservationSystem
 {
-	Flight::Flight(const std::string& arrivalCity, const std::string& depatureCity, int flightNumber,int totalSeats):mArrivalCity(arrivalCity),mDepatureCity(depatureCity),
-		mFlightNumber(flightNumber)
+	Flight::Flight(const std::string& arrivalCity, const std::string& depatureCity, const std::string& duration, const std::string& depaturetime, const std::string& arrivaltime,int flightNumber,int totalSeats):mArrivalCity(arrivalCity),mDepatureCity(depatureCity),
+		mFlightNumber(flightNumber),mDuration(duration),mArrivalTime(arrivaltime),mDepatureTime(depaturetime)
 	{
 		for (int i = 1; i <= totalSeats; i++) {
 			mAvailableSeats.push_back(i);
 		}
-
+		  
 	}
 	void Flight::setArrivalCity(const std::string& arrivalCity)
 	{
@@ -32,7 +32,30 @@ namespace AirlineReservationSystem
 	{
 		return mDepatureCity;
 	}
-
+	void Flight::setDepatureTime(const std::string& depaturetime)
+	{
+		mDepatureTime = depaturetime;
+	}
+	const std::string& Flight::getDepatureTime() const
+	{
+		return mDepatureTime;
+	}
+	void Flight::setArrivalTime(const std::string& arrivaltime)
+	{
+		mArrivalTime = arrivaltime;
+	}
+	const std::string& Flight::getArrivalTime() const
+	{
+		return mArrivalTime;
+	}
+	void Flight::setDuration(const std::string& duration)
+	{
+		mDuration = duration;
+	}
+	const std::string& Flight::getDuration() const
+	{
+		return mDuration;
+	}
 	void Flight::setFlightNumber(int flightNumber)
 	{
 		mFlightNumber = flightNumber;
@@ -45,6 +68,7 @@ namespace AirlineReservationSystem
 		return mAvailableSeats;
 	}
 	
+	
 	void Flight::reserveSeat(Passenger& passenger) {
 		mPassengers.push_back(passenger);
 		int seatNumber = passenger.getSeatNumber();
@@ -56,6 +80,8 @@ namespace AirlineReservationSystem
 	void Flight::display() const
 	{
 		cout << "Flight Number: "<<getFlightNumber() << "  travels from  " << getDepatureCity() << "  to  " << getArrivalCity() << endl;
+		cout << " Depature Time: "<< getDepatureTime() <<"  Arrival Time:  "<< getArrivalTime() <<" Duration: " << getDuration() << endl;
+		
 	}
 
 }
