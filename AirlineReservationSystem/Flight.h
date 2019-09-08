@@ -18,21 +18,11 @@ namespace AirlineReservationSystem {
 
 		void setFlightNumber(int flightNumber);
 		int getFlightNumber()const;
-
-		 std::vector<int>& getAvailableSeats();
-
-		 std::vector<Passenger>& getPassengers();
-
-		void display() const;
-
-		//vector<int>& getAvailableSeats();
-
-		//void setAvailableSeats(const std::vector<int>& availableSeats);
-	   // std::vector<int>& getAvailableSeats()const;
-
-		void reserveSeat(Passenger& passenger);
-       // std::vector<Passenger>& getPassengers() const;
-
+        std::vector<int>& getAvailableSeats();
+        std::vector<Passenger>& getPassengers();
+        void display() const;
+        void reserveSeat(Passenger& passenger);
+      
 
 
 	private:

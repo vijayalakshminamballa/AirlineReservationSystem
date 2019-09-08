@@ -4,7 +4,8 @@
 
 using namespace std;
 namespace AirlineReservationSystem {
-	Passenger::Passenger(const std::string& firstname, const std::string& lastname, int idNumber) :mFirstName(firstname),mLastName(lastname),mIdNumber(idNumber)
+	Passenger::Passenger(const std::string& firstname, const std::string& lastname, int idNumber, const std::string& gender,const std::string& birthday)
+		:mFirstName(firstname),mLastName(lastname),mIdNumber(idNumber),mGender(gender),mBirthday(birthday)
 	{}
 	void Passenger::setFirstName(const std::string& firstname)
 	{
@@ -30,7 +31,23 @@ namespace AirlineReservationSystem {
 	{
 		return mIdNumber;
 	}
-	void Passenger::setSeatNumber(int seatNumber)
+	void Passenger::setGender(const std::string& gender)
+	{
+		mGender = gender;
+	}
+	const string& Passenger::getGender() const
+	{
+		return mGender;
+	}
+	void Passenger::setBirthday(const std::string& birthday)
+	{
+		mBirthday = birthday;
+	}
+	const string& Passenger::getBirthday() const
+	{
+		return mBirthday;
+	}
+    void Passenger::setSeatNumber(int seatNumber)
 	{
 		mSeatNumber = seatNumber; 
 	}

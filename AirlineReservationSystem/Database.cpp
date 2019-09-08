@@ -15,9 +15,9 @@ namespace AirlineReservationSystem
 		{
 			if (flight.getFlightNumber() == flightNumber) {
 				return flight;
-			}
+			} 
 		}
-		throw std::logic_error("No fligt found");
+		throw std::logic_error("No flights found");
 	}
 
     vector<Flight>& Database::getAllFlights()

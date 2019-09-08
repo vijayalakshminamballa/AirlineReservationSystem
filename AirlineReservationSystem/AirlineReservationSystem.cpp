@@ -71,21 +71,12 @@ int displayMenu()
 	cout << "3.Display Passenger Info" << endl;
 	cout << "4.Flight Details" << endl;
 	cout << "5.User Ticket Information" << endl;
-	cout << "0. Quit" << endl;
+	cout << "0.Exit " << endl;
 	cout << endl;
 	cin >> selection;
 	cout << selection;
    
 	return selection;
-}
-
-void flightSchedule(Database& db)
-{
-	vector<Flight>& Flights = db.getAllFlights();
-	for (Flight& flight : Flights) {
-		flight.display();
-	}
-
 }
 Flight& chooseFlight(Database& db) {
 	int flightId;
@@ -95,20 +86,35 @@ Flight& chooseFlight(Database& db) {
 	Flight& flight = db.getFlight(flightId);
 	return flight;
 }
+void flightSchedule(Database& db)
+{
+	vector<Flight>& Flights = db.getAllFlights();
+	for (Flight& flight : Flights) {
+		flight.display();
+	}
 
+}
 Passenger& getPassengerInfo()
 {
 	string firstName;
 	string lastName;
+	string gender;
 	int Id;
+	string birthday;
 	cout << "First Name:" << endl;
 	cin >> firstName;
 	cout << "Last Name:" << endl;
 	cin >> lastName;
+	cout << "Gender:" << endl;
+	cin >> gender;
 	cout << "Id Number" << endl;
 	cin >> Id;
-
-	Passenger* passenger = new Passenger(firstName, lastName, Id);
+	cout << "Date of birth :mm/dd/yyyy" << endl;
+	cin >> birthday;
+	int month = stoi(birthday.substr(0, 2));
+	int day = stoi(birthday.substr(3, 5));
+	int year = stoi(birthday.substr(6, 10));
+	Passenger* passenger = new Passenger(firstName, lastName,Id,gender,birthday);
 	return *passenger;
 
 
@@ -144,8 +150,11 @@ void displayPassengerInfo(Database& db) {
 	vector<Passenger> passengers = flight.getPassengers();
 	for (Passenger& passenger : passengers) {
 		cout << "Passenger Information:" << endl;
+		cout << "-----------------------" << endl;
 		cout << "Seat Number: " << passenger.getSeatNumber() << endl;
 		cout << "Name: " << passenger.getFirstName() << " " << passenger.getLastName() << endl;
+		cout << "Gender:" << passenger.getGender() << endl;
+		cout << "Date Of Birth:" << passenger.getBirthday() << endl;
 		cout << "Flight Number: " << flight.getFlightNumber() << endl;
 		cout << "Flight From: " << flight.getDepatureCity() << " To: " << flight.getArrivalCity() << endl;
 		cout << endl;
@@ -167,6 +176,8 @@ void userTicketInfomation(Database& db)
 			cout << "Passenger Information:" << endl;
 			cout << "-------------------------" << endl;
 			cout << "Name: " << passenger.getFirstName() << " " << passenger.getLastName() << endl;
+			cout << "Gender:" << passenger.getGender() << endl;
+			cout << "Date Of Birth" << passenger.getBirthday() << endl;
 			cout << "Flight Number: " << flight.getFlightNumber() << endl;
 			cout << "Flight From: " << flight.getDepatureCity() << " to " << flight.getArrivalCity() << endl;
 			cout << "Seat Number: " << passenger.getSeatNumber() << endl;
